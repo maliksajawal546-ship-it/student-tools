@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SparkDesk Unit Converter Pro</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: linear-gradient(135deg, #0f172a, #1e293b);
+  --card: rgba(255,255,255,0.08);
+  --text: white;
+  --input: rgba(255,255,255,0.1);
+  --result: rgba(255,255,255,0.1);
+}
+
+.light {
+  --bg: linear-gradient(135deg, #eef2f7, #dfe9f3);
+  --card: white;
+  --text: #111;
+  --input: #f1f5f9;
+  --result: #f8fafc;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: var(--bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  transition: 0.3s;
+  color: var(--text);
+}
+
+.container {
+  width: 420px;
+  background: var(--card);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 18px;
+  color: #60a5fa;
+}
+
+.toggle {
+  background: #3b82f6;
+  border: none;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+input, select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 10px;
+  border: none;
+  background: var(--input);
+  color: var(--text);
+  outline: none;
+}
+
+option { color: black; }
+
+button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  transform: scale(1.03);
+}
+
+.result {
+  margin-top: 15px;
+  padding: 15px;
+  background: var(--result);
+  border-radius: 10px;
+  font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="top">
+  <h2>⚡ Unit Converter</h2>
+  <button class="toggle" onclick="toggleTheme()">Dark/Light</button>
+</div>
+
+<input type="number" id="value" placeholder="Enter value">
+
+<select id="type">
+  <option value="length">Length</option>
+  <option value="weight">Weight</option>
+  <option value="temp">Temperature</option>
+</select>
+
+<select id="from"></select>
+<select id="to"></select>
+
+<button onclick="convert()">Convert Now</button>
+
+<div class="result" id="result">Result will appear here</div>
+
+</div>
+
+<script>
+
+let isDark = true;
+
+function toggleTheme() {
+  document.body.classList.toggle("light");
+}
+
+const units = {
+  length: {
+    meter: 1,
+    km: 0.001,
+    cm: 100,
+    inch: 39.3701,
+    foot: 3.28084
+  },
+  weight: {
+    kg: 1,
+    gram: 1000,
+    pound: 2.20462
+  }
+};
+
+const type = document.getElementById("type");
+const from = document.getElementById("from");
+const to = document.getElementById("to");
+const resultBox = document.getElementById("result");
+
+function loadUnits() {
+  from.innerHTML = "";
+  to.innerHTML = "";
+
+  if (type.value === "temp") {
+    ["Celsius","Fahrenheit","Kelvin"].forEach(u=>{
+      from.innerHTML += `<option>${u}</option>`;
+      to.innerHTML += `<option>${u}</option>`;
+    });
+  } else {
+    Object.keys(units[type.value]).forEach(u=>{
+      from.innerHTML += `<option value="${u}">${u}</option>`;
+      to.innerHTML += `<option value="${u}">${u}</option>`;
+    });
+  }
+}
+
+type.addEventListener("change", loadUnits);
+loadUnits();
+
+function convert() {
+  let value = parseFloat(document.getElementById("value").value);
+
+  if (isNaN(value)) {
+    resultBox.innerHTML = "⚠ Enter valid number";
+    return;
+  }
+
+  let t = type.value;
+  let fromUnit = from.value;
+  let toUnit = to.value;
+  let result;
+
+  if (t === "temp") {
+
+    let c;
+    if (fromUnit === "Celsius") c = value;
+    if (fromUnit === "Fahrenheit") c = (value - 32) * 5/9;
+    if (fromUnit === "Kelvin") c = value - 273.15;
+
+    if (toUnit === "Celsius") result = c;
+    if (toUnit === "Fahrenheit") result = (c * 9/5) + 32;
+    if (toUnit === "Kelvin") result = c + 273.15;
+
+  } else {
+    let base = value / units[t][fromUnit];
+    result = base * units[t][toUnit];
+  }
+
+  resultBox.innerHTML = `
+    <b>${t.toUpperCase()}</b><br>
+    ${value} ${fromUnit} → <b>${result.toFixed(4)} ${toUnit}</b>
+  `;
+}
+
+</script>
+
+</body>
+</html>

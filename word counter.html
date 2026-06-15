@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Word Counter - Student AI Tools</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+background:#f4f6fb;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.container{
+background:#fff;
+padding:30px;
+border-radius:20px;
+box-shadow:0 10px 25px rgba(0,0,0,0.1);
+width:500px;
+max-width:95%;
+}
+
+h1{
+text-align:center;
+color:#7c3aed;
+margin-bottom:15px;
+}
+
+textarea{
+width:100%;
+height:180px;
+padding:15px;
+border-radius:12px;
+border:1px solid #ddd;
+font-size:16px;
+resize:none;
+outline:none;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+margin-top:15px;
+}
+
+.box{
+background:#f8f7ff;
+padding:15px;
+border-radius:12px;
+text-align:center;
+}
+
+.box h2{
+margin:0;
+color:#7c3aed;
+}
+
+.box p{
+margin:5px 0 0;
+font-size:14px;
+color:#555;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Word Counter</h1>
+
+<textarea id="text" placeholder="Start typing..."></textarea>
+
+<div class="stats">
+
+<div class="box">
+<h2 id="words">0</h2>
+<p>Words</p>
+</div>
+
+<div class="box">
+<h2 id="chars">0</h2>
+<p>Characters</p>
+</div>
+
+<div class="box">
+<h2 id="charsNoSpace">0</h2>
+<p>Without Spaces</p>
+</div>
+
+<div class="box">
+<h2 id="sentences">0</h2>
+<p>Sentences</p>
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+const textArea = document.getElementById("text");
+
+textArea.addEventListener("input", function(){
+
+let text = textArea.value.trim();
+
+/* WORDS */
+let words = text ? text.split(/\s+/).length : 0;
+
+/* CHARACTERS */
+let chars = text.length;
+
+/* CHARACTERS WITHOUT SPACE */
+let charsNoSpace = text.replace(/\s/g, "").length;
+
+/* SENTENCES */
+let sentences = text ? text.split(/[.!?]+/).filter(s => s.trim().length > 0).length : 0;
+
+/* UPDATE UI */
+document.getElementById("words").innerText = words;
+document.getElementById("chars").innerText = chars;
+document.getElementById("charsNoSpace").innerText = charsNoSpace;
+document.getElementById("sentences").innerText = sentences;
+
+});
+
+</script>
+
+</body>
+</html>>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pomodoro Timer - Student AI Tools</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+margin:0;
+font-family:'Poppins',sans-serif;
+background:#f4f6fb;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.container{
+background:#fff;
+padding:40px;
+border-radius:25px;
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
+text-align:center;
+width:350px;
+}
+
+h1{
+color:#7c3aed;
+margin-bottom:10px;
+}
+
+.timer{
+font-size:60px;
+font-weight:700;
+margin:20px 0;
+color:#1e293b;
+}
+
+.status{
+color:#64748b;
+margin-bottom:15px;
+}
+
+.buttons{
+display:flex;
+gap:10px;
+justify-content:center;
+}
+
+button{
+padding:10px 15px;
+border:none;
+border-radius:10px;
+cursor:pointer;
+font-weight:600;
+}
+
+.start{
+background:#7c3aed;
+color:#fff;
+}
+
+.pause{
+background:#f59e0b;
+color:#fff;
+}
+
+.reset{
+background:#ef4444;
+color:#fff;
+}
+
+footer{
+margin-top:20px;
+font-size:12px;
+color:#94a3b8;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Pomodoro Timer</h1>
+
+<div class="status" id="status">Ready to start</div>
+
+<div class="timer" id="timer">25:00</div>
+
+<div class="buttons">
+<button class="start" onclick="startTimer()">Start</button>
+<button class="pause" onclick="pauseTimer()">Pause</button>
+<button class="reset" onclick="resetTimer()">Reset</button>
+</div>
+
+<footer>Focus 25 min • Break 5 min system</footer>
+
+</div>
+
+<script>
+let workTime = 25 * 60;
+let breakTime = 5 * 60;
+let timeLeft = workTime;
+let isRunning = false;
+let isWorkSession = true;
+let interval;
+
+const timerEl = document.getElementById("timer");
+const statusEl = document.getElementById("status");
+
+function updateDisplay(){
+let minutes = Math.floor(timeLeft / 60);
+let seconds = timeLeft % 60;
+timerEl.textContent =
+`${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
+}
+
+function startTimer(){
+if(isRunning) return;
+
+isRunning = true;
+
+interval = setInterval(()=>{
+timeLeft--;
+
+updateDisplay();
+
+if(timeLeft <= 0){
+switchSession();
+}
+},1000);
+
+statusEl.textContent = isWorkSession ? "Working Session" : "Break Time";
+}
+
+function pauseTimer(){
+clearInterval(interval);
+isRunning = false;
+statusEl.textContent = "Paused";
+}
+
+function resetTimer(){
+clearInterval(interval);
+isRunning = false;
+isWorkSession = true;
+timeLeft = workTime;
+updateDisplay();
+statusEl.textContent = "Ready to start";
+}
+
+function switchSession(){
+clearInterval(interval);
+
+isWorkSession = !isWorkSession;
+timeLeft = isWorkSession ? workTime : breakTime;
+
+statusEl.textContent = isWorkSession ? "Working Session" : "Break Time";
+
+startTimer();
+}
+
+// initial display
+updateDisplay();
+</script>
+
+</body>
+</html>

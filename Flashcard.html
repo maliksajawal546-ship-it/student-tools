@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI Flashcard Generator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6fb;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  color: #1e2a38;
+}
+
+textarea {
+  width: 90%;
+  height: 150px;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: #1e2a38;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #34495e;
+}
+
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.card {
+  background: white;
+  border-radius: 10px;
+  padding: 20px;
+  height: 150px;
+  perspective: 1000px;
+  cursor: pointer;
+}
+
+.inner-card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s;
+  transform-style: preserve-3d;
+}
+
+.card.flipped .inner-card {
+  transform: rotateY(180deg);
+}
+
+.front, .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.front {
+  background: #ffffff;
+  font-weight: bold;
+}
+
+.back {
+  background: #00c896;
+  color: white;
+  transform: rotateY(180deg);
+}
+</style>
+</head>
+
+<body>
+
+<h1>🧠 AI Flashcard Generator</h1>
+
+<p>Paste your notes below and generate smart flashcards</p>
+
+<textarea id="inputText" placeholder="Enter your study notes here..."></textarea><br>
+
+<button onclick="generateFlashcards()">Generate Flashcards</button>
+<button onclick="downloadFlashcards()">Download JSON</button>
+
+<div class="cards-container" id="cards"></div>
+
+<script>
+let flashcards = [];
+
+function generateFlashcards() {
+  let text = document.getElementById("inputText").value;
+
+  if (!text.trim()) {
+    alert("Please enter some text!");
+    return;
+  }
+
+  let sentences = text.split(/[.!?]/).filter(s => s.trim().length > 5);
+
+  flashcards = [];
+  let html = "";
+
+  sentences.forEach((sentence, index) => {
+    let clean = sentence.trim();
+
+    let question = createQuestion(clean);
+    let answer = clean;
+
+    flashcards.push({question, answer});
+
+    html += `
+    <div class="card" onclick="flipCard(this)">
+      <div class="inner-card">
+        <div class="front">${question}</div>
+        <div class="back">${answer}</div>
+      </div>
+    </div>`;
+  });
+
+  document.getElementById("cards").innerHTML = html;
+}
+
+function createQuestion(sentence) {
+  // Simple AI-like logic (keyword-based)
+  let words = sentence.split(" ");
+  let key = words[0];
+
+  if (sentence.toLowerCase().includes("definition")) {
+    return "What is the definition?";
+  }
+  if (sentence.toLowerCase().includes("function")) {
+    return "What is the function of this concept?";
+  }
+
+  return "Explain: " + sentence.slice(0, 40) + "...";
+}
+
+function flipCard(card) {
+  card.classList.toggle("flipped");
+}
+
+function downloadFlashcards() {
+  if (flashcards.length === 0) {
+    alert("Generate flashcards first!");
+    return;
+  }
+
+  let dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(flashcards));
+  let dl = document.createElement("a");
+  dl.setAttribute("href", dataStr);
+  dl.setAttribute("download", "flashcards.json");
+  dl.click();
+}
+</script>
+
+</body>
+</html>

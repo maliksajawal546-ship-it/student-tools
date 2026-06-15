@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MDCAT Merit Calculator</title>
+  <style>
+    body {
+      font-family: Arial;
+      background: #f4f6f8;
+      padding: 20px;
+    }
+
+    .box {
+      background: white;
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .result {
+      margin-top: 15px;
+      font-size: 18px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .section {
+      margin-bottom: 15px;
+      padding: 10px;
+      background: #f9f9f9;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+
+  <h2>🧮 MDCAT Merit Calculator</h2>
+
+  <div class="section">
+    <h4>Matric</h4>
+    <input type="number" id="matricObt" placeholder="Obtained Marks">
+    <input type="number" id="matricTotal" placeholder="Total Marks">
+  </div>
+
+  <div class="section">
+    <h4>FSc</h4>
+    <input type="number" id="fscObt" placeholder="Obtained Marks">
+    <input type="number" id="fscTotal" placeholder="Total Marks">
+  </div>
+
+  <div class="section">
+    <h4>MDCAT</h4>
+    <input type="number" id="mdcatObt" placeholder="Obtained Marks">
+    <input type="number" id="mdcatTotal" placeholder="Total Marks">
+  </div>
+
+  <button onclick="calculate()">Calculate Merit</button>
+
+  <div class="result" id="result"></div>
+
+</div>
+
+<script>
+function calculate() {
+
+  let matricObt = parseFloat(document.getElementById("matricObt").value) || 0;
+  let matricTotal = parseFloat(document.getElementById("matricTotal").value) || 1;
+
+  let fscObt = parseFloat(document.getElementById("fscObt").value) || 0;
+  let fscTotal = parseFloat(document.getElementById("fscTotal").value) || 1;
+
+  let mdcatObt = parseFloat(document.getElementById("mdcatObt").value) || 0;
+  let mdcatTotal = parseFloat(document.getElementById("mdcatTotal").value) || 1;
+
+  // Convert to percentages
+  let matric = (matricObt / matricTotal) * 100;
+  let fsc = (fscObt / fscTotal) * 100;
+  let mdcat = (mdcatObt / mdcatTotal) * 100;
+
+  // MDCAT MERIT FORMULA (Pakistan)
+  let aggregate =
+    (matric * 0.10) +
+    (fsc * 0.40) +
+    (mdcat * 0.50);
+
+  document.getElementById("result").innerHTML =
+    "🎯 Your Aggregate: " + aggregate.toFixed(2) + "%";
+
+}
+</script>
+
+</body>
+</html>

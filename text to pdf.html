@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Text to PDF Converter</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f7fb;
+    margin:0;
+    padding:20px;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    background:#fff;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+h1{
+    text-align:center;
+    color:#0073aa;
+}
+
+textarea{
+    width:100%;
+    height:350px;
+    padding:15px;
+    font-size:16px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    resize:vertical;
+    box-sizing:border-box;
+}
+
+.controls{
+    margin-top:15px;
+}
+
+input[type="text"]{
+    padding:10px;
+    width:250px;
+    border:1px solid #ccc;
+    border-radius:6px;
+}
+
+button{
+    padding:10px 20px;
+    background:#0073aa;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    margin-left:10px;
+}
+
+button:hover{
+    background:#005f8a;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<h1>📄 Text to PDF Converter</h1>
+
+<textarea id="textContent" placeholder="Type or paste your text here..."></textarea>
+
+<div class="controls">
+    <input type="text" id="fileName" placeholder="PDF File Name" value="document">
+    <button onclick="generatePDF()">Download PDF</button>
+</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+async function generatePDF() {
+
+    const text = document.getElementById("textContent").value;
+
+    if(text.trim() === ""){
+        alert("Please enter some text.");
+        return;
+    }
+
+    const fileName =
+        document.getElementById("fileName").value || "document";
+
+    const { jsPDF } = window.jspdf;
+
+    const doc = new jsPDF();
+
+    const lines = doc.splitTextToSize(text, 180);
+
+    doc.text(lines, 15, 20);
+
+    doc.save(fileName + ".pdf");
+}
+</script>
+
+</body>
+</html>

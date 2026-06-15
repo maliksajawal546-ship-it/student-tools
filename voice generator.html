@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YouTube Voice Generator</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #0b1220;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 420px;
+    background: #111827;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+h2 { text-align: center; }
+
+textarea {
+    width: 100%;
+    height: 140px;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    resize: none;
+    outline: none;
+}
+
+select, input {
+    width: 100%;
+    margin-top: 10px;
+    padding: 8px;
+}
+
+button {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.play { background: #22c55e; color: white; }
+.stop { background: #ef4444; color: white; }
+.download { background: #3b82f6; color: white; }
+
+.typing {
+    font-size: 12px;
+    opacity: 0.7;
+    margin-top: 5px;
+    min-height: 18px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>🔊  Voice Generator</h2>
+
+    <textarea id="text" placeholder="Paste your YouTube script here..."></textarea>
+    <div class="typing" id="typing"></div>
+
+    <select id="langFilter" onchange="loadVoices()">
+        <option value="all">All Voices</option>
+        <option value="en">English</option>
+        <option value="hi">Hindi</option>
+    </select>
+
+    <select id="voiceList"></select>
+
+    <input type="range" id="rate" min="0.5" max="2" step="0.1" value="1">
+    <input type="range" id="pitch" min="0" max="2" step="0.1" value="1">
+
+    <button class="play" onclick="speak()">▶ Speak</button>
+    <button class="stop" onclick="stop()">⛔ Stop</button>
+    <button class="download" onclick="downloadAudio()">⬇ Download Audio</button>
+</div>
+
+<script>
+let voices = [];
+let utterance = new SpeechSynthesisUtterance();
+let mediaRecorder;
+let chunks = [];
+
+// Load voices
+function loadVoices() {
+    voices = speechSynthesis.getVoices();
+    let list = document.getElementById("voiceList");
+    let filter = document.getElementById("langFilter").value;
+
+    list.innerHTML = "";
+
+    voices.forEach((v, i) => {
+        if (
+            filter === "all" ||
+            (filter === "en" && v.lang.startsWith("en")) ||
+            (filter === "hi" && v.lang.includes("hi"))
+        ) {
+            let opt = document.createElement("option");
+            opt.value = i;
+            opt.textContent = `${v.name} (${v.lang})`;
+            list.appendChild(opt);
+        }
+    });
+}
+
+speechSynthesis.onvoiceschanged = loadVoices;
+
+// Auto typing animation
+document.getElementById("text").addEventListener("input", function () {
+    let text = this.value;
+    let i = 0;
+    document.getElementById("typing").innerHTML = "";
+
+    function type() {
+        if (i < text.length) {
+            document.getElementById("typing").innerHTML += text[i];
+            i++;
+            setTimeout(type, 20);
+        }
+    }
+
+    type();
+});
+
+// Speak
+function speak() {
+    let text = document.getElementById("text").value;
+    if (!text) return;
+
+    utterance.text = text;
+    utterance.voice = voices[document.getElementById("voiceList").value];
+    utterance.rate = document.getElementById("rate").value;
+    utterance.pitch = document.getElementById("pitch").value;
+
+    speechSynthesis.speak(utterance);
+}
+
+// Stop
+function stop() {
+    speechSynthesis.cancel();
+}
+
+// Download (browser recording)
+async function downloadAudio() {
+    let text = document.getElementById("text").value;
+    if (!text) return;
+
+    let stream = await navigator.mediaDevices.getUserMedia({ audio: true }).catch(() => null);
+
+    if (!stream) {
+        alert("Recording not supported in this browser.");
+        return;
+    }
+
+    let recorder = new MediaRecorder(stream);
+    chunks = [];
+
+    recorder.ondataavailable = e => chunks.push(e.data);
+
+    recorder.onstop = () => {
+        let blob = new Blob(chunks, { type: "audio/webm" });
+        let url = URL.createObjectURL(blob);
+
+        let a = document.createElement("a");
+        a.href = url;
+        a.download = "youtube-voice.webm";
+        a.click();
+    };
+
+    recorder.start();
+
+    let speakNow = new SpeechSynthesisUtterance(text);
+    speakNow.voice = voices[document.getElementById("voiceList").value];
+
+    speakNow.onend = () => {
+        recorder.stop();
+        stream.getTracks().forEach(t => t.stop());
+    };
+
+    speechSynthesis.speak(speakNow);
+}
+</script>
+
+</body>
+</html>

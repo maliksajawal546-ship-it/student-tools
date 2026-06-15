@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI Notes Generator</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6fb;
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+
+h1 {
+  color: #1e2a38;
+}
+
+textarea {
+  width: 90%;
+  height: 180px;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+button {
+  margin: 10px 5px;
+  padding: 10px 18px;
+  background: #1e2a38;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #34495e;
+}
+
+.output {
+  margin-top: 25px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  white-space: pre-wrap;
+  line-height: 1.6;
+}
+
+.tag {
+  display: inline-block;
+  background: #00c896;
+  color: white;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🧠 AI Notes Generator</h1>
+<p>Convert messy text into clean, structured study notes</p>
+
+<textarea id="inputText" placeholder="Paste your lecture notes or topic here..."></textarea><br>
+
+<button onclick="generateNotes()">Generate Notes</button>
+<button onclick="copyNotes()">Copy Notes</button>
+<button onclick="downloadNotes()">Download Notes</button>
+
+<div class="output" id="output"></div>
+
+<script>
+
+function generateNotes() {
+  let text = document.getElementById("inputText").value;
+
+  if (!text.trim()) {
+    alert("Please enter some text!");
+    return;
+  }
+
+  let sentences = text.split(/[.!?]/).filter(s => s.trim().length > 5);
+
+  let headings = [];
+  let bullets = [];
+
+  sentences.forEach(sentence => {
+    let clean = sentence.trim();
+
+    // Simple logic for headings
+    if (clean.length < 40 || clean.toLowerCase().includes("definition")) {
+      headings.push(clean);
+    } else {
+      bullets.push(clean);
+    }
+  });
+
+  let output = "";
+
+  output += "<div class='tag'>AI GENERATED NOTES</div>\n\n";
+
+  output += "📌 MAIN HEADINGS\n";
+  headings.forEach(h => {
+    output += "• " + h + "\n";
+  });
+
+  output += "\n📚 DETAILED POINTS\n";
+  bullets.forEach(b => {
+    output += "• " + b + "\n";
+  });
+
+  output += "\n✨ KEY SUMMARY\n";
+  output += bullets.slice(0, 3).join(" | ");
+
+  document.getElementById("output").innerText = output;
+}
+
+function copyNotes() {
+  let text = document.getElementById("output").innerText;
+
+  if (!text.trim()) {
+    alert("Generate notes first!");
+    return;
+  }
+
+  navigator.clipboard.writeText(text);
+  alert("Notes copied!");
+}
+
+function downloadNotes() {
+  let text = document.getElementById("output").innerText;
+
+  if (!text.trim()) {
+    alert("Generate notes first!");
+    return;
+  }
+
+  let blob = new Blob([text], {type: "text/plain"});
+  let link = document.createElement("a");
+
+  link.href = URL.createObjectURL(blob);
+  link.download = "ai-notes.txt";
+  link.click();
+}
+
+</script>
+
+</body>
+</html>

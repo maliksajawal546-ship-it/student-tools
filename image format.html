@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Advanced Image Converter Tool</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg, #e3edf7, #dfe9f3);
+  text-align: center;
+  padding: 20px;
+}
+
+.container {
+  max-width: 700px;
+  margin: auto;
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+}
+
+.dropzone {
+  border: 2px dashed #4a90e2;
+  padding: 40px;
+  border-radius: 10px;
+  color: #4a90e2;
+  cursor: pointer;
+  margin-bottom: 15px;
+}
+
+img {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  margin: 5px;
+  border-radius: 6px;
+}
+
+.controls {
+  margin: 10px 0;
+}
+
+select, input[type=range], button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+button {
+  background: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #2d6cdf;
+}
+
+#preview {
+  margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Advanced Image Converter</h2>
+
+<div class="dropzone" id="dropzone">
+Drag & Drop Images or Click Here
+</div>
+
+<input type="file" id="fileInput" multiple accept="image/*" hidden>
+
+<div class="controls">
+<label>Compression: <span id="val">80</span>%</label>
+<input type="range" id="quality" min="10" max="100" value="80">
+</div>
+
+<select id="format">
+<option value="image/jpeg">JPG</option>
+<option value="image/png">PNG</option>
+<option value="image/webp">WEBP</option>
+</select>
+
+<button onclick="convertImages()">Convert & Download</button>
+
+<div id="preview"></div>
+
+</div>
+
+<script>
+let files = [];
+
+const dropzone = document.getElementById("dropzone");
+const fileInput = document.getElementById("fileInput");
+
+dropzone.onclick = () => fileInput.click();
+
+fileInput.onchange = (e) => {
+  files = Array.from(e.target.files);
+  showPreview();
+};
+
+dropzone.ondragover = (e) => {
+  e.preventDefault();
+  dropzone.style.background = "#eef";
+};
+
+dropzone.ondrop = (e) => {
+  e.preventDefault();
+  files = Array.from(e.dataTransfer.files);
+  showPreview();
+};
+
+function showPreview() {
+  const preview = document.getElementById("preview");
+  preview.innerHTML = "";
+
+  files.forEach(file => {
+    const img = document.createElement("img");
+    img.src = URL.createObjectURL(file);
+    preview.appendChild(img);
+  });
+}
+
+document.getElementById("quality").oninput = function() {
+  document.getElementById("val").innerText = this.value;
+};
+
+function convertImages() {
+  const format = document.getElementById("format").value;
+  const quality = document.getElementById("quality").value / 100;
+
+  if (files.length === 0) {
+    alert("Please upload images first!");
+    return;
+  }
+
+  files.forEach((file, index) => {
+    const img = new Image();
+    img.src = URL.createObjectURL(file);
+
+    img.onload = () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = img.width;
+      canvas.height = img.height;
+
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0);
+
+      canvas.toBlob((blob) => {
+        const a = document.createElement("a");
+        a.href = URL.createObjectURL(blob);
+        a.download = "converted_" + index + ".jpg";
+        a.click();
+      }, format, quality);
+    };
+  });
+}
+</script>
+
+</body>
+</html>
