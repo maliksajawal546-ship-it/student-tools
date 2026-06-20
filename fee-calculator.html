@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Fee Calculator - Calculate Semester & Annual Education Fees Online</title>
+
+<meta name="description" content="Free Fee Calculator for students. Calculate semester fees, annual fees, tuition fees, hostel charges, transport costs, scholarships and educational expenses instantly.">
+
+<meta name="keywords" content="fee calculator, semester fee calculator, annual fee calculator, tuition fee calculator, education fee calculator, student fee estimator, university fee calculator">
+
+<meta name="robots" content="index, follow">
+<meta name="author" content="Student AI Tools">
+
+<link rel="canonical" href="https://yourdomain.com/fee-calculator.html">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f7fb;
+color:#333;
+line-height:1.7;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+padding:20px;
+}
+
+header{
+text-align:center;
+padding:40px 20px;
+}
+
+header h1{
+font-size:2.6rem;
+color:#2563eb;
+margin-bottom:10px;
+}
+
+header p{
+color:#555;
+font-size:1.1rem;
+}
+
+.calculator{
+background:#fff;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.1);
+margin-bottom:30px;
+}
+
+label{
+display:block;
+font-weight:bold;
+margin:15px 0 5px;
+}
+
+input{
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:20px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:8px;
+font-size:18px;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.result{
+margin-top:20px;
+padding:20px;
+background:#e0f2fe;
+border-radius:10px;
+font-size:18px;
+font-weight:bold;
+}
+
+.article{
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.article h2{
+margin:20px 0 10px;
+color:#2563eb;
+}
+
+.article ul{
+padding-left:25px;
+}
+
+.article a{
+color:#2563eb;
+text-decoration:none;
+}
+
+.article a:hover{
+text-decoration:underline;
+}
+
+footer{
+margin-top:40px;
+background:#1e293b;
+color:white;
+padding:25px;
+text-align:center;
+}
+
+@media(max-width:768px){
+header h1{
+font-size:2rem;
+}
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<header>
+<h1>Fee Calculator</h1>
+<p>Estimate your semester and annual educational expenses instantly.</p>
+</header>
+
+<div class="calculator">
+
+<label>Tuition Fee (Per Semester)</label>
+<input type="number" id="tuition" placeholder="Enter tuition fee">
+
+<label>Hostel Fee (Per Semester)</label>
+<input type="number" id="hostel" placeholder="Enter hostel fee">
+
+<label>Transport Fee (Per Semester)</label>
+<input type="number" id="transport" placeholder="Enter transport fee">
+
+<label>Other Charges (Per Semester)</label>
+<input type="number" id="other" placeholder="Enter other charges">
+
+<label>Scholarship / Discount</label>
+<input type="number" id="scholarship" placeholder="Enter scholarship amount">
+
+<button onclick="calculateFee()">Calculate Fees</button>
+
+<div class="result" id="result">
+Enter your fee details above.
+</div>
+
+</div>
+
+<section class="article">
+
+<h2>What is a Fee Calculator?</h2>
+
+<p>
+A Fee Calculator is an essential tool for students who want to estimate their educational expenses. Whether you are studying in a college, university, medical institute, engineering program, or online course, understanding your total costs helps you plan your finances effectively.
+</p>
+
+<p>
+This calculator combines tuition fees, hostel expenses, transportation charges, and miscellaneous educational costs to provide an accurate estimate of semester and annual fees.
+</p>
+
+<h2>Why Use a Fee Calculator?</h2>
+
+<ul>
+<li>Plan your education budget effectively.</li>
+<li>Compare costs between institutions.</li>
+<li>Estimate annual expenses instantly.</li>
+<li>Account for scholarships and discounts.</li>
+<li>Improve financial planning for students and parents.</li>
+</ul>
+
+<h2>Educational Expenses Included</h2>
+
+<ul>
+<li>Tuition fees</li>
+<li>Hostel charges</li>
+<li>Transportation costs</li>
+<li>Laboratory fees</li>
+<li>Registration fees</li>
+<li>Miscellaneous educational expenses</li>
+</ul>
+
+<h2>Benefits of Financial Planning for Students</h2>
+
+<p>
+Managing educational expenses is important for long-term academic success. Students who understand their financial commitments can reduce stress, avoid unexpected costs, and focus more effectively on learning.
+</p>
+
+<h2>Related Student Tools</h2>
+
+<ul>
+<li><a href="gpa-scale-converter.html">GPA Scale Converter</a></li>
+<li><a href="sgpa-calculator.html">SGPA Calculator</a></li>
+<li><a href="cgpa-calculator.html">CGPA Calculator</a></li>
+<li><a href="marks-calculator.html">Marks Calculator</a></li>
+<li><a href="grade-calculator.html">Grade Calculator</a></li>
+<li><a href="study-time-calculator.html">Study Time Calculator</a></li>
+</ul>
+
+<h2>External Learning Resources</h2>
+
+<p>
+Explore these educational platforms to improve your learning:
+</p>
+
+<ul>
+<li>
+<a href="https://www.khanacademy.org" target="_blank" rel="noopener noreferrer">
+Khan Academy
+</a>
+</li>
+
+<li>
+<a href="https://www.coursera.org" target="_blank" rel="noopener noreferrer">
+Coursera
+</a>
+</li>
+
+<li>
+<a href="https://www.edx.org" target="_blank" rel="noopener noreferrer">
+edX
+</a>
+</li>
+
+<li>
+<a href="https://www.futurelearn.com" target="_blank" rel="noopener noreferrer">
+FutureLearn
+</a>
+</li>
+</ul>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>How is annual fee calculated?</h3>
+<p>
+The annual fee is typically calculated by multiplying the semester fee by two.
+</p>
+
+<h3>Can scholarships reduce total fees?</h3>
+<p>
+Yes. Scholarships, grants, and discounts can significantly reduce educational expenses.
+</p>
+
+<h3>Who can use this calculator?</h3>
+<p>
+School, college, university, medical, engineering, and online learning students can all use this tool.
+</p>
+
+<h2>Conclusion</h2>
+
+<p>
+The Fee Calculator helps students and parents estimate educational expenses quickly and accurately. Proper budgeting and financial planning can make academic journeys smoother and more successful.
+</p>
+
+</section>
+
+<footer>
+<p>© 2026 Student AI Tools | Fee Calculator</p>
+</footer>
+
+</div>
+
+<script>
+
+function calculateFee(){
+
+let tuition = parseFloat(document.getElementById("tuition").value) || 0;
+let hostel = parseFloat(document.getElementById("hostel").value) || 0;
+let transport = parseFloat(document.getElementById("transport").value) || 0;
+let other = parseFloat(document.getElementById("other").value) || 0;
+let scholarship = parseFloat(document.getElementById("scholarship").value) || 0;
+
+let semesterFee = tuition + hostel + transport + other - scholarship;
+
+if(semesterFee < 0){
+semesterFee = 0;
+}
+
+let annualFee = semesterFee * 2;
+
+document.getElementById("result").innerHTML =
+`
+Semester Fee: Rs. ${semesterFee.toLocaleString()} <br><br>
+Annual Fee: Rs. ${annualFee.toLocaleString()}
+`;
+
+}
+
+</script>
+
+</body>
+</html>

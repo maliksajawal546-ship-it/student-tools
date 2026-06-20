@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>CGPA Calculator - Free Cumulative GPA Calculator Online | Student AI Tools</title>
+
+<meta name="description" content="Free CGPA Calculator for students. Calculate your cumulative GPA instantly using semester SGPAs and credit hours. Accurate, fast, and easy to use.">
+
+<meta name="keywords" content="CGPA Calculator, GPA Calculator, SGPA to CGPA Calculator, Cumulative GPA Calculator, University CGPA Calculator, Student GPA Tool">
+
+<meta name="robots" content="index,follow">
+<meta name="author" content="Student AI Tools">
+
+<link rel="canonical" href="https://maliksajawal546-ship-it.github.io/student-tools/cgpa-calculator.html">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f6fb;
+color:#333;
+line-height:1.7;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+padding:20px;
+}
+
+.hero{
+text-align:center;
+padding:40px 0;
+}
+
+.hero h1{
+font-size:42px;
+color:#1e3a8a;
+margin-bottom:10px;
+}
+
+.hero p{
+font-size:18px;
+}
+
+.calculator{
+background:#fff;
+padding:25px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.1);
+margin:30px 0;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-bottom:20px;
+}
+
+th,td{
+border:1px solid #ddd;
+padding:10px;
+text-align:center;
+}
+
+input{
+width:100%;
+padding:10px;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+button{
+background:#2563eb;
+color:white;
+border:none;
+padding:12px 25px;
+border-radius:6px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.result{
+font-size:26px;
+font-weight:bold;
+text-align:center;
+margin-top:20px;
+color:#16a34a;
+}
+
+.article{
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.article h2{
+margin:25px 0 10px;
+color:#1e3a8a;
+}
+
+.article a{
+color:#2563eb;
+text-decoration:none;
+}
+
+.article a:hover{
+text-decoration:underline;
+}
+
+footer{
+background:#1e293b;
+color:white;
+text-align:center;
+padding:25px;
+margin-top:40px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="hero">
+<h1>CGPA Calculator</h1>
+<p>Calculate your cumulative GPA accurately using semester GPA and credit hours.</p>
+</div>
+
+<div class="calculator">
+
+<h2>Calculate CGPA</h2>
+
+<table>
+<tr>
+<th>Semester</th>
+<th>SGPA</th>
+<th>Credit Hours</th>
+</tr>
+
+<tr>
+<td>Semester 1</td>
+<td><input type="number" step="0.01" id="sgpa1"></td>
+<td><input type="number" id="cr1"></td>
+</tr>
+
+<tr>
+<td>Semester 2</td>
+<td><input type="number" step="0.01" id="sgpa2"></td>
+<td><input type="number" id="cr2"></td>
+</tr>
+
+<tr>
+<td>Semester 3</td>
+<td><input type="number" step="0.01" id="sgpa3"></td>
+<td><input type="number" id="cr3"></td>
+</tr>
+
+<tr>
+<td>Semester 4</td>
+<td><input type="number" step="0.01" id="sgpa4"></td>
+<td><input type="number" id="cr4"></td>
+</tr>
+
+<tr>
+<td>Semester 5</td>
+<td><input type="number" step="0.01" id="sgpa5"></td>
+<td><input type="number" id="cr5"></td>
+</tr>
+
+<tr>
+<td>Semester 6</td>
+<td><input type="number" step="0.01" id="sgpa6"></td>
+<td><input type="number" id="cr6"></td>
+</tr>
+<tr>
+<td>Semester 7</td>
+<td><input type="number" step="0.01" id="sgpa7"></td>
+<td><input type="number" id="cr7"></td>
+</tr>
+<tr>
+<td>Semester 8</td>
+<td><input type="number" step="0.01" id="sgpa8"></td>
+<td><input type="number" id="cr8"></td>
+</tr>
+</table>
+
+<center>
+<button onclick="calculateCGPA()">Calculate CGPA</button>
+</center>
+
+<div class="result" id="result">
+Your CGPA: 0.00
+</div>
+
+</div>
+
+<div class="article">
+
+<h2>What is CGPA?</h2>
+
+<p>
+CGPA (Cumulative Grade Point Average) is the overall academic performance of a student across all completed semesters. It provides a comprehensive measure of academic achievement throughout a degree program.
+</p>
+
+<h2>How is CGPA Calculated?</h2>
+
+<p>
+CGPA is calculated by multiplying each semester's SGPA by its credit hours, adding all quality points together, and dividing by total credit hours.
+</p>
+
+<p>
+<strong>CGPA = Σ(SGPA × Credit Hours) ÷ Total Credit Hours</strong>
+</p>
+
+<h2>Why is CGPA Important?</h2>
+
+<p>
+Universities, scholarship committees, employers, and graduate schools often evaluate students based on their CGPA. A higher CGPA can improve opportunities for internships, scholarships, and admissions.
+</p>
+
+<h2>Benefits of Using a CGPA Calculator</h2>
+
+<ul>
+<li>Instant results</li>
+<li>Error-free calculations</li>
+<li>Track academic performance</li>
+<li>Plan future semester targets</li>
+</ul>
+
+<h2>Related Academic Tools</h2>
+
+<p>
+Use our <a href="sgpa-calculator.html">SGPA Calculator</a> to calculate semester GPA.
+</p>
+
+<p>
+Need quick math calculations? Try our
+<a href="calculator.html">Online Calculator</a>.
+</p>
+
+<h2>Helpful Educational Resources</h2>
+
+<p>
+Learn more about GPA systems on
+<a href="https://en.wikipedia.org/wiki/Grade_point_average" target="_blank" rel="nofollow noopener">Wikipedia GPA Guide</a>.
+</p>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>What is the difference between SGPA and CGPA?</h3>
+<p>
+SGPA measures performance in a single semester, while CGPA measures overall academic performance across all semesters.
+</p>
+
+<h3>Is a 4.0 CGPA good?</h3>
+<p>
+Yes, a 4.0 CGPA generally represents excellent academic performance.
+</p>
+
+<h3>Can I calculate CGPA from SGPA?</h3>
+<p>
+Yes. Enter each semester's SGPA and credit hours into the calculator above.
+</p>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 Student AI Tools | CGPA Calculator
+</footer>
+
+<script>
+function calculateCGPA(){
+
+let totalCredits = 0;
+let totalPoints = 0;
+
+for(let i=1;i<=8;i++){
+
+let sgpa = parseFloat(document.getElementById("sgpa"+i).value) || 0;
+let credits = parseFloat(document.getElementById("cr"+i).value) || 0;
+
+totalPoints += sgpa * credits;
+totalCredits += credits;
+}
+
+if(totalCredits === 0){
+document.getElementById("result").innerHTML =
+"Please enter valid values.";
+return;
+}
+
+let cgpa = totalPoints / totalCredits;
+
+document.getElementById("result").innerHTML =
+"Your CGPA: " + cgpa.toFixed(2);
+}
+</script>
+
+</body>
+</html>
+

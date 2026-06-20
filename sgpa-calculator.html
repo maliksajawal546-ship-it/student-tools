@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SGPA Calculator - Free Semester GPA Calculator Online | Student AI Tools</title>
+
+<meta name="description" content="Free SGPA Calculator for university and college students. Calculate your Semester Grade Point Average (SGPA) instantly using credit hours and grade points. Fast, accurate, and easy to use.">
+
+<meta name="keywords" content="SGPA Calculator, SGPA Calculator Online, Semester GPA Calculator, GPA Calculator, CGPA Calculator, University GPA Calculator, Student GPA Tool, Academic Calculator, Grade Point Average Calculator, Student AI Tools">
+
+<meta name="author" content="Student AI Tools">
+
+<meta name="robots" content="index, follow">
+
+<meta name="language" content="English">
+
+<meta name="revisit-after" content="7 days">
+
+<meta name="theme-color" content="#2563eb">
+
+<meta name="application-name" content="Student AI Tools">
+
+<link rel="canonical" href="sgpa-calculator.html">
+
+<!-- Open Graph Meta Tags -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="SGPA Calculator - Free Semester GPA Calculator Online">
+<meta property="og:description" content="Calculate your Semester Grade Point Average (SGPA) instantly. Enter credit hours and grade points to get accurate results within seconds.">
+<meta property="og:url" content="sgpa calculator.html">
+<meta property="og:site_name" content="Student AI Tools">
+<meta property="og:image" content="https://www.studentaitools.com/images/sgpa-calculator-preview.jpg">
+
+<!-- Twitter/X Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="SGPA Calculator - Free Semester GPA Calculator Online">
+<meta name="twitter:description" content="Free online SGPA Calculator for students. Calculate your semester GPA accurately using credit hours and grade points.">
+<meta name="twitter:image" content="https://www.studentaitools.com/images/sgpa-calculator-preview.jpg">
+
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="/favicon.png">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f6fb;
+color:#333;
+line-height:1.7;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:30px 20px;
+}
+
+.hero{
+text-align:center;
+padding:40px 20px;
+}
+
+.hero h1{
+font-size:42px;
+margin-bottom:15px;
+color:#1e3a8a;
+}
+
+.hero p{
+font-size:18px;
+max-width:700px;
+margin:auto;
+}
+
+.calculator{
+background:#fff;
+padding:25px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
+margin-top:40px;
+}
+
+.calculator h2{
+text-align:center;
+margin-bottom:20px;
+color:#1e3a8a;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+margin-bottom:20px;
+}
+
+th,td{
+padding:10px;
+border:1px solid #ddd;
+text-align:center;
+}
+
+input{
+width:100%;
+padding:10px;
+border:1px solid #ccc;
+border-radius:5px;
+}
+
+button{
+background:#2563eb;
+color:white;
+border:none;
+padding:12px 25px;
+border-radius:6px;
+cursor:pointer;
+font-size:16px;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.result{
+margin-top:20px;
+font-size:24px;
+font-weight:bold;
+text-align:center;
+color:#16a34a;
+}
+
+.article{
+background:white;
+padding:30px;
+margin-top:40px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+.article h2{
+color:#1e3a8a;
+margin-bottom:15px;
+margin-top:25px;
+}
+
+.article p{
+margin-bottom:15px;
+}
+
+footer{
+text-align:center;
+padding:30px;
+margin-top:40px;
+background:#1e293b;
+color:white;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="hero">
+<h1>SGPA Calculator</h1>
+<p>
+Calculate your Semester Grade Point Average (SGPA) quickly and accurately.
+Simply enter your credit hours and grade points to get instant results.
+</p>
+</div>
+
+<div class="calculator">
+
+<h2>Calculate Your SGPA</h2>
+
+<table>
+<tr>
+<th>Course</th>
+<th>Credit Hours</th>
+<th>Grade Points</th>
+</tr>
+
+<tr>
+<td>Course 1</td>
+<td><input type="number" id="ch1" min="0"></td>
+<td><input type="number" id="gp1" min="0" max="4" step="0.01"></td>
+</tr>
+
+<tr>
+<td>Course 2</td>
+<td><input type="number" id="ch2" min="0"></td>
+<td><input type="number" id="gp2" min="0" max="4" step="0.01"></td>
+</tr>
+
+<tr>
+<td>Course 3</td>
+<td><input type="number" id="ch3" min="0"></td>
+<td><input type="number" id="gp3" min="0" max="4" step="0.01"></td>
+</tr>
+
+<tr>
+<td>Course 4</td>
+<td><input type="number" id="ch4" min="0"></td>
+<td><input type="number" id="gp4" min="0" max="4" step="0.01"></td>
+</tr>
+
+<tr>
+<td>Course 5</td>
+<td><input type="number" id="ch5" min="0"></td>
+<td><input type="number" id="gp5" min="0" max="4" step="0.01"></td>
+</tr>
+
+</table>
+
+<center>
+<button onclick="calculateSGPA()">Calculate SGPA</button>
+</center>
+
+<div class="result" id="result">
+Your SGPA: 0.00
+</div>
+
+</div>
+
+<div class="article">
+
+<h2>What is SGPA?</h2>
+
+<p>
+SGPA stands for Semester Grade Point Average. It is a measure of a student's academic performance during a single semester. Universities and colleges use SGPA to evaluate how well a student has performed in all subjects during that semester.
+</p>
+
+<h2>How is SGPA Calculated?</h2>
+
+<p>
+SGPA is calculated by dividing the total quality points earned by the total credit hours attempted during the semester.
+</p>
+
+<p>
+Formula:
+</p>
+
+<p>
+<strong>SGPA = Σ(Credit Hours × Grade Points) ÷ Total Credit Hours</strong>
+</p>
+
+<h2>Why is SGPA Important?</h2>
+
+<p>
+SGPA helps students monitor their academic progress semester by semester. It is often used for scholarships, academic awards, internships, and admission to higher education programs.
+</p>
+
+<h2>Benefits of Using an Online SGPA Calculator</h2>
+
+<p>
+An online SGPA Calculator saves time and eliminates manual calculation errors. Students can instantly determine their semester performance by entering credit hours and grade points.
+</p>
+
+<h2>How to Use This SGPA Calculator</h2>
+
+<p>
+1. Enter the credit hours for each course.<br>
+2. Enter the grade points earned in each course.<br>
+3. Click the "Calculate SGPA" button.<br>
+4. Instantly view your Semester GPA.
+</p>
+
+<h2>Frequently Asked Questions</h2>
+
+<p>
+<strong>Is SGPA the same as CGPA?</strong><br>
+No. SGPA represents performance in a single semester, while CGPA represents overall performance across multiple semesters.
+</p>
+
+<p>
+<strong>Can SGPA be converted into CGPA?</strong><br>
+Yes. CGPA is usually calculated using the SGPAs of all semesters.
+</p>
+
+<p>
+<strong>Is this calculator free?</strong><br>
+Yes, this SGPA Calculator is completely free to use.
+</p>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 Student AI Tools | SGPA Calculator
+</footer>
+
+<script>
+function calculateSGPA(){
+
+let totalCredits = 0;
+let totalPoints = 0;
+
+for(let i=1;i<=5;i++){
+
+let ch = parseFloat(document.getElementById("ch"+i).value) || 0;
+let gp = parseFloat(document.getElementById("gp"+i).value) || 0;
+
+totalCredits += ch;
+totalPoints += ch * gp;
+}
+
+if(totalCredits === 0){
+document.getElementById("result").innerHTML =
+"Please enter valid values.";
+return;
+}
+
+let sgpa = totalPoints / totalCredits;
+
+document.getElementById("result").innerHTML =
+"Your SGPA: " + sgpa.toFixed(2);
+}
+</script>
+
+</body>
+</html>

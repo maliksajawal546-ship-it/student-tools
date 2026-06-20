@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Unit Converter - Free Online Length, Weight, Area & Volume Converter</title>
+
+<meta name="description" content="Free online Unit Converter. Convert length, weight, area, volume, and temperature units instantly. Fast, accurate, and easy-to-use converter for students and professionals.">
+
+<meta name="keywords" content="Unit Converter, Length Converter, Weight Converter, Area Converter, Volume Converter, Temperature Converter, Measurement Converter">
+
+<meta name="author" content="Student AI Tools">
+<meta name="robots" content="index,follow">
+
+<link rel="canonical" href="https://www.studentaitools.com/unit-converter.html">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f6fb;
+color:#333;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:20px;
+}
+
+.hero{
+text-align:center;
+padding:40px 20px;
+}
+
+.hero h1{
+font-size:42px;
+color:#1e3a8a;
+margin-bottom:10px;
+}
+
+.converter{
+background:#fff;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.1);
+margin-bottom:30px;
+}
+
+.row{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:15px;
+margin-bottom:15px;
+}
+
+input,
+select{
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:6px;
+font-size:16px;
+}
+
+button{
+background:#2563eb;
+color:white;
+border:none;
+padding:12px 25px;
+border-radius:6px;
+cursor:pointer;
+font-size:16px;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.result{
+margin-top:20px;
+padding:20px;
+background:#ecfdf5;
+border-radius:10px;
+text-align:center;
+font-size:24px;
+font-weight:bold;
+color:#15803d;
+}
+
+.article{
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+line-height:1.8;
+}
+
+.article h2{
+margin-top:25px;
+color:#1e3a8a;
+}
+
+.article ul{
+margin-left:25px;
+}
+
+.article a{
+color:#2563eb;
+text-decoration:none;
+}
+
+footer{
+margin-top:40px;
+background:#1e293b;
+color:white;
+text-align:center;
+padding:25px;
+}
+
+@media(max-width:768px){
+.row{
+grid-template-columns:1fr;
+}
+
+.hero h1{
+font-size:32px;
+}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="hero">
+<h1>Unit Converter</h1>
+<p>Convert Length, Weight, Area, Volume, and Temperature units instantly.</p>
+</div>
+
+<div class="converter">
+
+<div class="row">
+<select id="category" onchange="updateUnits()">
+<option value="length">Length</option>
+<option value="weight">Weight</option>
+<option value="area">Area</option>
+<option value="volume">Volume</option>
+<option value="temperature">Temperature</option>
+</select>
+
+<input type="number" id="inputValue" placeholder="Enter Value">
+</div>
+
+<div class="row">
+<select id="fromUnit"></select>
+<select id="toUnit"></select>
+</div>
+
+<center>
+<button onclick="convert()">Convert</button>
+</center>
+
+<div class="result" id="result">
+Result Appears Here
+</div>
+
+</div>
+
+<div class="article">
+
+<h2>What Is a Unit Converter?</h2>
+
+<p>
+A Unit Converter is a tool that converts measurements from one unit to another. It is widely used in education, engineering, science, business, and everyday calculations.
+</p>
+
+<h2>Length Conversion Scale</h2>
+
+<ul>
+<li>1 Kilometer = 1000 Meters</li>
+<li>1 Meter = 100 Centimeters</li>
+<li>1 Foot = 12 Inches</li>
+<li>1 Mile = 1609.34 Meters</li>
+</ul>
+
+<h2>Weight Conversion Scale</h2>
+
+<ul>
+<li>1 Kilogram = 1000 Grams</li>
+<li>1 Pound = 0.453592 Kilograms</li>
+<li>1 Ounce = 28.35 Grams</li>
+</ul>
+
+<h2>Area Conversion Scale</h2>
+
+<ul>
+<li>1 Hectare = 10,000 Square Meters</li>
+<li>1 Acre = 4046.86 Square Meters</li>
+</ul>
+
+<h2>Volume Conversion Scale</h2>
+
+<ul>
+<li>1 Liter = 1000 Milliliters</li>
+<li>1 Gallon = 3.78541 Liters</li>
+</ul>
+
+<h2>Benefits of Using a Unit Converter</h2>
+
+<ul>
+<li>Instant results</li>
+<li>Accurate conversions</li>
+<li>Saves time</li>
+<li>Useful for students and professionals</li>
+</ul>
+
+<h2>Related Tools</h2>
+
+<ul>
+<li><a href="percentage-calculator.html">Percentage Calculator</a></li>
+<li><a href="age-calculator.html">Age Calculator</a></li>
+<li><a href="sgpa-calculator.html">SGPA Calculator</a></li>
+<li><a href="cgpa-calculator.html">CGPA Calculator</a></li>
+</ul>
+
+<h2>Learn More</h2>
+
+<p>
+<a href="https://en.wikipedia.org/wiki/Unit_of_measurement" target="_blank" rel="nofollow noopener">
+Units of Measurement Guide
+</a>
+</p>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 Student AI Tools | Unit Converter
+</footer>
+
+<script>
+
+const conversionData = {
+
+length:{
+Meter:1,
+Kilometer:1000,
+Centimeter:0.01,
+Millimeter:0.001,
+Mile:1609.34,
+Yard:0.9144,
+Foot:0.3048,
+Inch:0.0254
+},
+
+weight:{
+Kilogram:1,
+Gram:0.001,
+Milligram:0.000001,
+Pound:0.453592,
+Ounce:0.0283495
+},
+
+area:{
+"Square Meter":1,
+"Square Kilometer":1000000,
+Hectare:10000,
+Acre:4046.86,
+"Square Foot":0.092903
+},
+
+volume:{
+Liter:1,
+Milliliter:0.001,
+"Gallon (US)":3.78541,
+"Cubic Meter":1000
+}
+};
+
+function updateUnits(){
+
+const category =
+document.getElementById("category").value;
+
+const from =
+document.getElementById("fromUnit");
+
+const to =
+document.getElementById("toUnit");
+
+from.innerHTML="";
+to.innerHTML="";
+
+if(category==="temperature"){
+
+["Celsius","Fahrenheit","Kelvin"]
+.forEach(unit=>{
+
+from.innerHTML += `<option>${unit}</option>`;
+to.innerHTML += `<option>${unit}</option>`;
+});
+
+return;
+}
+
+Object.keys(conversionData[category])
+.forEach(unit=>{
+
+from.innerHTML += `<option>${unit}</option>`;
+to.innerHTML += `<option>${unit}</option>`;
+});
+}
+
+function convert(){
+
+const category =
+document.getElementById("category").value;
+
+const value =
+parseFloat(document.getElementById("inputValue").value);
+
+if(isNaN(value)){
+document.getElementById("result").innerHTML =
+"Please enter a valid number";
+return;
+}
+
+const from =
+document.getElementById("fromUnit").value;
+
+const to =
+document.getElementById("toUnit").value;
+
+let result;
+
+if(category==="temperature"){
+
+if(from==="Celsius"){
+if(to==="Fahrenheit") result=value*9/5+32;
+else if(to==="Kelvin") result=value+273.15;
+else result=value;
+}
+else if(from==="Fahrenheit"){
+if(to==="Celsius") result=(value-32)*5/9;
+else if(to==="Kelvin") result=(value-32)*5/9+273.15;
+else result=value;
+}
+else{
+if(to==="Celsius") result=value-273.15;
+else if(to==="Fahrenheit") result=(value-273.15)*9/5+32;
+else result=value;
+}
+}
+else{
+const base=value*conversionData[category][from];
+result=base/conversionData[category][to];
+}
+
+document.getElementById("result").innerHTML=
+result.toFixed(6);
+}
+
+window.onload=updateUnits;
+
+</script>
+
+</body>
+</html>

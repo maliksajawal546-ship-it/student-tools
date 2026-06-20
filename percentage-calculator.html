@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Percentage Calculator - Free Online Percentage Calculator | Student AI Tools</title>
+
+<meta name="description" content="Free Percentage Calculator for students. Calculate exam percentages, assignment percentages, marks percentages, and score percentages instantly. Fast, accurate, and easy to use.">
+
+<meta name="keywords" content="Percentage Calculator, Marks Percentage Calculator, Exam Percentage Calculator, Student Percentage Calculator, Online Percentage Calculator, Score Calculator">
+
+<meta name="author" content="Student AI Tools">
+<meta name="robots" content="index,follow">
+
+<link rel="canonical" href="https://www.studentaitools.com/percentage-calculator.html">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Percentage Calculator - Free Online Percentage Calculator">
+<meta property="og:description" content="Calculate percentages instantly for exams, assignments, and academic scores.">
+<meta property="og:url" content="https://www.studentaitools.com/percentage-calculator.html">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Percentage Calculator">
+<meta name="twitter:description" content="Free online percentage calculator for students and professionals.">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f4f6fb;
+color:#333;
+line-height:1.7;
+}
+
+.container{
+max-width:1000px;
+margin:auto;
+padding:20px;
+}
+
+.hero{
+text-align:center;
+padding:40px 20px;
+}
+
+.hero h1{
+font-size:42px;
+color:#1e3a8a;
+margin-bottom:10px;
+}
+
+.hero p{
+font-size:18px;
+}
+
+.calculator{
+background:#fff;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.1);
+margin:30px 0;
+}
+
+.calculator h2{
+text-align:center;
+margin-bottom:20px;
+color:#1e3a8a;
+}
+
+.input-group{
+margin-bottom:20px;
+}
+
+label{
+display:block;
+margin-bottom:8px;
+font-weight:bold;
+}
+
+input{
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:6px;
+font-size:16px;
+}
+
+button{
+background:#2563eb;
+color:white;
+border:none;
+padding:12px 25px;
+border-radius:6px;
+cursor:pointer;
+font-size:16px;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.result{
+margin-top:20px;
+padding:20px;
+background:#ecfdf5;
+border-radius:10px;
+text-align:center;
+font-size:24px;
+font-weight:bold;
+color:#15803d;
+}
+
+.article{
+background:#fff;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+margin-top:30px;
+}
+
+.article h2{
+color:#1e3a8a;
+margin:25px 0 10px;
+}
+
+.article h3{
+margin-top:20px;
+}
+
+.article ul,
+.article ol{
+margin-left:25px;
+}
+
+.article a{
+color:#2563eb;
+text-decoration:none;
+}
+
+.article a:hover{
+text-decoration:underline;
+}
+
+footer{
+background:#1e293b;
+color:white;
+text-align:center;
+padding:25px;
+margin-top:40px;
+}
+
+@media(max-width:768px){
+.hero h1{
+font-size:32px;
+}
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="hero">
+<h1>Percentage Calculator</h1>
+<p>Calculate percentages for exams, assignments, quizzes, and academic results instantly.</p>
+</div>
+
+<div class="calculator">
+
+<h2>Calculate Percentage</h2>
+
+<div class="input-group">
+<label>Obtained Marks</label>
+<input type="number" id="obtained" placeholder="Enter obtained marks">
+</div>
+
+<div class="input-group">
+<label>Total Marks</label>
+<input type="number" id="total" placeholder="Enter total marks">
+</div>
+
+<center>
+<button onclick="calculatePercentage()">Calculate Percentage</button>
+</center>
+
+<div class="result" id="result">
+Percentage: 0%
+</div>
+
+</div>
+
+<div class="article">
+
+<h2>What is a Percentage Calculator?</h2>
+
+<p>
+A Percentage Calculator is a simple tool that helps students calculate their percentage scores quickly and accurately. It is commonly used for exam results, assignments, quizzes, and academic performance tracking.
+</p>
+
+<h2>How to Calculate Percentage?</h2>
+
+<p>
+The percentage formula is:
+</p>
+
+<p>
+<strong>Percentage = (Obtained Marks ÷ Total Marks) × 100</strong>
+</p>
+
+<p>
+For example, if you score 450 marks out of 550:
+</p>
+
+<p>
+<strong>(450 ÷ 550) × 100 = 81.82%</strong>
+</p>
+
+<h2>Benefits of Using a Percentage Calculator</h2>
+
+<ul>
+<li>Instant calculations</li>
+<li>Accurate results</li>
+<li>Easy to use</li>
+<li>Useful for students and teachers</li>
+<li>Saves time compared to manual calculations</li>
+</ul>
+
+<h2>Who Can Use This Calculator?</h2>
+
+<ul>
+<li>School students</li>
+<li>College students</li>
+<li>University students</li>
+<li>Teachers</li>
+<li>Parents monitoring academic performance</li>
+</ul>
+
+<h2>Related Academic Tools</h2>
+
+<ul>
+<li><a href="sgpa-calculator.html">SGPA Calculator</a></li>
+<li><a href="cgpa-calculator.html">CGPA Calculator</a></li>
+<li><a href="mdcat-merit-calculator.html">MDCAT Merit Calculator</a></li>
+</ul>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>Is this Percentage Calculator free?</h3>
+<p>Yes, it is completely free to use.</p>
+
+<h3>Can I calculate exam percentages?</h3>
+<p>Yes. Simply enter your obtained marks and total marks.</p>
+
+<h3>Does this work on mobile devices?</h3>
+<p>Yes. The calculator is fully responsive and works on all devices.</p>
+
+<h2>Conclusion</h2>
+
+<p>
+Our Percentage Calculator provides a fast and reliable way to calculate academic percentages. Whether you're checking exam results or assignment scores, this tool helps you get accurate results within seconds.
+</p>
+
+</div>
+
+</div>
+
+<footer>
+© 2026 Student AI Tools | Percentage Calculator
+</footer>
+
+<script>
+function calculatePercentage(){
+
+let obtained = parseFloat(document.getElementById("obtained").value);
+let total = parseFloat(document.getElementById("total").value);
+
+if(isNaN(obtained) || isNaN(total) || total <= 0){
+document.getElementById("result").innerHTML =
+"Please enter valid marks.";
+return;
+}
+
+let percentage = (obtained / total) * 100;
+
+document.getElementById("result").innerHTML =
+"Percentage: " + percentage.toFixed(2) + "%";
+}
+</script>
+
+</body>
+</html>

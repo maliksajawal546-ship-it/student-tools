@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Marks Calculator - Calculate Obtained Marks, Percentage & Remaining Marks</title>
+
+<meta name="description" content="Free Marks Calculator for students. Calculate obtained marks, percentage, remaining marks, exam scores and academic performance instantly.">
+
+<meta name="keywords" content="marks calculator, percentage calculator, obtained marks calculator, exam marks calculator, student marks tool, academic calculator">
+
+<meta name="robots" content="index, follow">
+<meta name="author" content="Student AI Tools">
+
+<link rel="canonical" href="https://yourdomain.com/marks-calculator.html">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:#f5f7fb;
+color:#333;
+line-height:1.7;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+padding:20px;
+}
+
+header{
+text-align:center;
+padding:40px 20px;
+}
+
+header h1{
+font-size:2.5rem;
+color:#2563eb;
+margin-bottom:10px;
+}
+
+.calculator{
+background:#fff;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.1);
+margin-bottom:30px;
+}
+
+label{
+display:block;
+margin:15px 0 5px;
+font-weight:bold;
+}
+
+input{
+width:100%;
+padding:12px;
+border:1px solid #ccc;
+border-radius:8px;
+font-size:16px;
+}
+
+button{
+width:100%;
+padding:14px;
+margin-top:20px;
+background:#2563eb;
+color:white;
+border:none;
+border-radius:8px;
+font-size:18px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.result{
+margin-top:20px;
+padding:20px;
+background:#e0f2fe;
+border-radius:10px;
+font-size:18px;
+font-weight:bold;
+}
+
+.article{
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+.article h2{
+margin:20px 0 10px;
+color:#2563eb;
+}
+
+.article ul{
+padding-left:25px;
+}
+
+.article a{
+color:#2563eb;
+text-decoration:none;
+}
+
+footer{
+margin-top:40px;
+padding:25px;
+background:#1e293b;
+color:white;
+text-align:center;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<header>
+<h1>Marks Calculator</h1>
+<p>Calculate obtained marks, percentage and remaining marks instantly.</p>
+</header>
+
+<div class="calculator">
+
+<label>Total Marks</label> <input type="number" id="totalMarks" placeholder="Enter total marks">
+
+<label>Obtained Marks</label> <input type="number" id="obtainedMarks" placeholder="Enter obtained marks">
+
+<button onclick="calculateMarks()">Calculate</button>
+
+<div class="result" id="result">
+Results will appear here.
+</div>
+
+</div>
+
+<section class="article">
+
+<h2>What is a Marks Calculator?</h2>
+
+<p>
+A Marks Calculator helps students calculate obtained marks, percentages, and remaining marks quickly and accurately. It is useful for school, college, university, engineering, medical, and competitive exam students.
+</p>
+
+<h2>Benefits of Using a Marks Calculator</h2>
+
+<ul>
+<li>Instant percentage calculation.</li>
+<li>Track academic performance.</li>
+<li>Identify improvement areas.</li>
+<li>Plan exam preparation effectively.</li>
+<li>Reduce manual calculation errors.</li>
+</ul>
+
+<h2>How Marks Percentage is Calculated</h2>
+
+<p>
+Percentage = (Obtained Marks ÷ Total Marks) × 100
+</p>
+
+<p>
+For example, if you score 850 marks out of 1000, your percentage will be 85%.
+</p>
+
+<h2>Why Academic Tracking Matters</h2>
+
+<p>
+Students who regularly monitor their marks can better understand their strengths and weaknesses. Tracking progress helps improve study strategies and academic performance.
+</p>
+
+<h2>Related Student Tools</h2>
+
+<ul>
+<li><a href="grade-calculator.html">Grade Calculator</a></li>
+<li><a href="gpa-scale-converter.html">GPA Scale Converter</a></li>
+<li><a href="sgpa-calculator.html">SGPA Calculator</a></li>
+<li><a href="cgpa-calculator.html">CGPA Calculator</a></li>
+<li><a href="study-time-calculator.html">Study Time Calculator</a></li>
+<li><a href="fee-calculator.html">Fee Calculator</a></li>
+</ul>
+
+<h2>Educational Resources</h2>
+
+<ul>
+<li><a href="https://www.khanacademy.org" target="_blank" rel="noopener">Khan Academy</a></li>
+<li><a href="https://www.coursera.org" target="_blank" rel="noopener">Coursera</a></li>
+<li><a href="https://www.edx.org" target="_blank" rel="noopener">edX</a></li>
+<li><a href="https://www.futurelearn.com" target="_blank" rel="noopener">FutureLearn</a></li>
+</ul>
+
+<h2>Frequently Asked Questions</h2>
+
+<h3>How do I calculate percentage?</h3>
+<p>Divide obtained marks by total marks and multiply by 100.</p>
+
+<h3>Can this calculator be used for any exam?</h3>
+<p>Yes, it works for school, college, university and competitive exams.</p>
+
+<h3>What are remaining marks?</h3>
+<p>Remaining marks are the marks not obtained from the total marks.</p>
+
+<h2>Conclusion</h2>
+
+<p>
+The Marks Calculator is an essential academic tool that helps students evaluate performance, monitor progress and prepare effectively for future examinations.
+</p>
+
+</section>
+
+<footer>
+<p>© 2026 Student AI Tools | Marks Calculator</p>
+</footer>
+
+</div>
+
+<script>
+
+function calculateMarks(){
+
+let total = parseFloat(document.getElementById("totalMarks").value);
+let obtained = parseFloat(document.getElementById("obtainedMarks").value);
+
+if(isNaN(total) || isNaN(obtained) || total <= 0){
+
+document.getElementById("result").innerHTML =
+"Please enter valid marks.";
+
+return;
+}
+
+if(obtained > total){
+
+document.getElementById("result").innerHTML =
+"Obtained marks cannot exceed total marks.";
+
+return;
+}
+
+let percentage = (obtained / total) * 100;
+let remaining = total - obtained;
+
+document.getElementById("result").innerHTML =
+`
+Obtained Marks: ${obtained}<br><br>
+Remaining Marks: ${remaining}<br><br>
+Percentage: ${percentage.toFixed(2)}%
+`;
+
+}
+
+</script>
+
+</body>
+</html>
