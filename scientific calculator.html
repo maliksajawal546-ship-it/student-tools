@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Scientific Calculator</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial;
+}
+
+:root{
+    --bg:#f4f5ff;
+    --card:#fff;
+    --btn:#eee;
+    --text:#111;
+    --primary:#6d28d9;
+}
+
+body.dark{
+    --bg:#0f172a;
+    --card:#1e293b;
+    --btn:#334155;
+    --text:#fff;
+}
+
+body{
+    background:var(--bg);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+}
+
+.calculator{
+    width:400px;
+    background:var(--card);
+    padding:20px;
+    border-radius:20px;
+}
+
+.top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.display{
+    width:100%;
+    height:70px;
+    font-size:26px;
+    text-align:right;
+    margin:10px 0;
+    padding:10px;
+    border:none;
+    border-radius:10px;
+    background:var(--btn);
+    color:var(--text);
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:8px;
+}
+
+button{
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:var(--btn);
+    cursor:pointer;
+    font-size:14px;
+    color:var(--text);
+}
+
+.equal{background:var(--primary);color:#fff;}
+.clear{background:#ef4444;color:#fff;}
+
+button:hover{transform:scale(1.05);}
+</style>
+</head>
+
+<body>
+
+<div class="calculator">
+
+<div class="top">
+    <h2>Scientific Calculator</h2>
+    <button onclick="toggleTheme()">🌙</button>
+</div>
+
+<input id="display" class="display" readonly>
+
+<div class="grid">
+
+<button class="clear" onclick="clearDisplay()">C</button>
+<button onclick="append('(')">(</button>
+<button onclick="append(')')">)</button>
+<button onclick="backspace()">⌫</button>
+<button onclick="append('/')">÷</button>
+
+<button onclick="append('7')">7</button>
+<button onclick="append('8')">8</button>
+<button onclick="append('9')">9</button>
+<button onclick="append('*')">×</button>
+<button onclick="append('Math.sqrt(')">√</button>
+
+<button onclick="append('4')">4</button>
+<button onclick="append('5')">5</button>
+<button onclick="append('6')">6</button>
+<button onclick="append('-')">−</button>
+<button onclick="append('^')">xʸ</button>
+
+<button onclick="append('1')">1</button>
+<button onclick="append('2')">2</button>
+<button onclick="append('3')">3</button>
+<button onclick="append('+')">+</button>
+<button onclick="append('Math.PI')">π</button>
+
+<button onclick="append('0')">0</button>
+<button onclick="append('.')">.</button>
+<button onclick="calculate()" class="equal">=</button>
+<button onclick="append('Math.E')">e</button>
+<button onclick="append('%')">%</button>
+
+<button onclick="append('sin(')">sin</button>
+<button onclick="append('cos(')">cos</button>
+<button onclick="append('tan(')">tan</button>
+<button onclick="append('log(')">log</button>
+<button onclick="append('ln(')">ln</button>
+
+</div>
+</div>
+
+<script>
+
+const display = document.getElementById("display");
+
+let DEG = true; // degree mode ON
+
+function append(v){
+    display.value += v;
+}
+
+function clearDisplay(){
+    display.value = "";
+}
+
+function backspace(){
+    display.value = display.value.slice(0,-1);
+}
+
+function toggleTheme(){
+    document.body.classList.toggle("dark");
+}
+
+// convert degrees to radians
+function toRad(x){
+    return DEG ? (x * Math.PI / 180) : x;
+}
+
+// factorial
+function fact(n){
+    if(n < 0) return NaN;
+    let f = 1;
+    for(let i=1;i<=n;i++) f *= i;
+    return f;
+}
+
+// expression parser
+function calculate(){
+    try{
+        let exp = display.value;
+
+        // factorial
+        exp = exp.replace(/(\d+)!/g, (_,n)=>fact(Number(n)));
+
+        // power
+        exp = exp.replace(/\^/g, "**");
+
+        // sin cos tan (degree support)
+        exp = exp.replace(/sin\(([^)]+)\)/g,
+            (_,v)=>Math.sin(toRad(eval(v)))
+        );
+
+        exp = exp.replace(/cos\(([^)]+)\)/g,
+            (_,v)=>Math.cos(toRad(eval(v)))
+        );
+
+        exp = exp.replace(/tan\(([^)]+)\)/g,
+            (_,v)=>Math.tan(toRad(eval(v)))
+        );
+
+        // log base10
+        exp = exp.replace(/log\(([^)]+)\)/g,
+            (_,v)=>Math.log10(eval(v))
+        );
+
+        // ln
+        exp = exp.replace(/ln\(([^)]+)\)/g,
+            (_,v)=>Math.log(eval(v))
+        );
+
+        display.value = eval(exp);
+
+    }catch(err){
+        display.value = "Error";
+    }
+}
+
+</script>
+
+</body>
+</html>
